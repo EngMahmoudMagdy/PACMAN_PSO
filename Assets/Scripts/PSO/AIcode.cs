@@ -10,13 +10,32 @@ public class AIcode : MonoBehaviour {
 	
 	}
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		Vector3 indBest = getIndividualBestNumber ();
-		float dx = transform.position.x + 2 * Random.value * (indBest.x - transform.position.x)+2*Random.value*(target.position.x-transform.position.x);
-		float dy = transform.position.y + 2 * Random.value * (indBest.y - transform.position.y)+2*Random.value*(target.position.y-transform.position.y);
-		Vector2 dest = new Vector2 (dx, dy);
+		float dx = transform.position.x + 0.5f * Random.value * (indBest.x - transform.position.x) + 5 * Random.value * (target.position.x - transform.position.x);
+		float dy = transform.position.y + 0.5f * Random.value * (indBest.y - transform.position.y) + 5 * Random.value * (target.position.y - transform.position.y);
+		Vector3 dest = new Vector2 (transform.position.x+dx,transform.position.y+dy);
+		if(dest.x<0f)
+		{
+			dest.x=0f;
+		}
+		if (dest.x > 28f) {
+			dest.x=28f;
+		}
+		if(dest.y<-7.5f)
+		{
+			dest.y=-7.5f;
+		}
+		if(dest.y>20.19f)
+		{
+			dest.y=20.19f;
+		}
 		Vector2 p = Vector2.MoveTowards(transform.position, dest, speed);
 		GetComponent<Rigidbody2D>().MovePosition(p);
+
+		Vector3 dir =  dest- transform.position;
+		GetComponent<Animator>().SetFloat("DirX", dir.x);
+		GetComponent<Animator>().SetFloat("DirY", dir.y);
 	}
 	Vector3 getIndividualBestNumber()
 	{
@@ -32,5 +51,9 @@ public class AIcode : MonoBehaviour {
 			}
 		}
 		return bestPoint; 
+	}
+	void OnTriggerEnter2D(Collider2D co) {
+		if (co.name == "pacman")
+			Destroy(co.gameObject);
 	}
 }
