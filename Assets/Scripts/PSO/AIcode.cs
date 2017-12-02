@@ -5,34 +5,42 @@ public class AIcode : MonoBehaviour {
 	public Transform target;
 	public Transform[] ghosts ;
 	public float speed = 0.4f;
+	private bool gameOver  ; 
 	// Use this for initialization
 	void Start () {
-	
+		gameOver = false;
 	}
 	// Update is called once per frame
 	void FixedUpdate () {
+		if(gameOver==false)
+			continueGame (); 
+	}
+	void continueGame()
+	{
 		Vector3 indBest = getIndividualBestNumber ();
 		float dx = transform.position.x + 0.5f * Random.value * (indBest.x - transform.position.x) + 5 * Random.value * (target.position.x - transform.position.x);
 		float dy = transform.position.y + 0.5f * Random.value * (indBest.y - transform.position.y) + 5 * Random.value * (target.position.y - transform.position.y);
+		//Vector3 dest = transform.position + 0.5f * Random.value * (indBest - transform.position) + 5 * Random.value * (target.position - transform.position);
+
 		Vector3 dest = new Vector2 (transform.position.x+dx,transform.position.y+dy);
 		if(dest.x<0f)
 		{
 			dest.x=0f;
 		}
-		if (dest.x > 28f) {
-			dest.x=28f;
+		if (dest.x > 27.2f) {
+			dest.x=27.2f;
 		}
 		if(dest.y<-7.5f)
 		{
 			dest.y=-7.5f;
 		}
-		if(dest.y>20.19f)
+		if(dest.y>29.19f)
 		{
-			dest.y=20.19f;
+			dest.y=29.19f;
 		}
 		Vector2 p = Vector2.MoveTowards(transform.position, dest, speed);
 		GetComponent<Rigidbody2D>().MovePosition(p);
-
+		
 		Vector3 dir =  dest- transform.position;
 		GetComponent<Animator>().SetFloat("DirX", dir.x);
 		GetComponent<Animator>().SetFloat("DirY", dir.y);
@@ -53,7 +61,9 @@ public class AIcode : MonoBehaviour {
 		return bestPoint; 
 	}
 	void OnTriggerEnter2D(Collider2D co) {
-		if (co.name == "pacman")
-			Destroy(co.gameObject);
+		if (co.name == "pacman") {
+			gameOver=true; 
+			Destroy (co.gameObject);
+		}
 	}
 }
