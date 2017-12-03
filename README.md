@@ -1,12 +1,16 @@
-Pacman-Clone
+Pacman Game
 ============
 
-![Screenshot](http://i.imgur.com/GQcmfQY.png)
+![Screenshot](https://github.com/EngMahmoudMagdy/PACMAN_PSO/blob/master/Pacman_Game.gif)
 
-**[Play on Web!](http://vilbeyli.github.io/Pacman/)**
+A Pacman Game made in Unity3D, a demo for applying the PSO algorithm where ghosts movements are the individual best points and the pacman movement is the global best point.
 
-A Pacman clone made in Unity3D, with tutorials from [noobtuts](http://noobtuts.com/unity/2d-pacman-game). In addition to the tutorial, [the original AI](http://pacman.shaunew.com/play/index.htm) is implemented with the help of [Game Internals](http://gameinternals.com/post/2072558330/understanding-pac-man-ghost-behavior) as well as menus, global high scores and a basic level progression system.
+These tutorials from [noobtuts](http://noobtuts.com/unity/2d-pacman-game), [the original AI](http://pacman.shaunew.com/play/index.htm) and [Game Internals](http://gameinternals.com/post/2072558330/understanding-pac-man-ghost-behavior) helped us to implement this project.
 
-----
+##  Team Members 
 
-See another similar clone game: [2.5D Minesweeper](https://github.com/vilbeyli/Minesweeper)
+### Mohamed Hashim
+### Mahmoud Magdy
+### Mohamed Zain
+### Omar Mostafta
+### Ahmed Hany
